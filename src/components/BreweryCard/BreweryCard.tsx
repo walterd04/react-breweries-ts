@@ -39,7 +39,8 @@ export default class BreweryCard extends Component<IBreweryCardProps, IBreweryCa
         return (
             showBreweryInfo ? 
                 <BreweryInfo brewery={ brewery }
-                             address={ address } /> 
+                             address={ address } 
+                             apiKey={'AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58'} /> 
                 :
                 <div className="card">
                     <img className="card-img-top" src={ genericImage } alt="Generic Brewery" />

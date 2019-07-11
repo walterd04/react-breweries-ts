@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 //TODO: seperate these into their own files
 interface IBreweryCardProps { 
     brewery: IBrewery, 
-    info: any
+    info: any, 
+    active: boolean
 }
 
 interface IBreweryCardState {
@@ -37,25 +38,44 @@ export default class BreweryCard extends Component<IBreweryCardProps, IBreweryCa
         let { brewery, showBreweryInfo } = this.state;
 
         let address = `${ brewery.street } ${ brewery.city }, ${ brewery.state } ${ brewery.postal_code } ${ brewery.country }`;
-        return (            
-            <div className="card">
-                <img className="card-img-top" src={ genericImage } alt="Generic Brewery" />
-                <div className="card-body">
-                    <h5 className="card-title">{ brewery.name }</h5>
-                    { brewery.website_url ? 
-                        <a className="btn btn-link card-text" 
-                            href={ brewery.website_url } 
-                            target="_blank"
-                            rel="noopener noreferrer">
-                                { brewery.website_url }
-                        </a> : <span>&nbsp;</span>
-                    }
-                    <p className="card-text">Brewery Type: { brewery.brewery_type }</p>
+
+        let cardClass = this.props.active ? "card bg-success border-dark mb-2" : "card bg-transparent border-dark mb-2";
+
+        return (
+            <div className={ cardClass }>
+                <div className="cardBody pl-1 pr-1">
+                    <h6 className="card-title">{ brewery.name }</h6>
+                    <p className="card-text">{ brewery.brewery_type }</p>
                     <p className="card-text">{ address }</p>
-                    <p className="card-text">{ brewery.phone }</p>                        
-                    <button className="btn btn-primary btn-block" onClick={ this.props.info }>View More Info</button>                    
+                    <small className="text-muted pb-2">
+                        <a href={ brewery.website_url }target="_blank" rel="noopener noreferrer">
+                            { brewery.website_url }
+                        </a>
+                    </small>
+                    <button className="btn btn-warning btn-block btn-sm" onClick={ this.props.info }>View More Info</button>
                 </div>
             </div>
         );
+
+        // return (            
+        //     <div className="card">
+        //         <img className="card-img-top" src={ genericImage } alt="Generic Brewery" />
+        //         <div className="card-body">
+        //             <h5 className="card-title">{ brewery.name }</h5>
+        //             { brewery.website_url ? 
+        //                 <a className="btn btn-link card-text" 
+        //                     href={ brewery.website_url } 
+        //                     target="_blank"
+        //                     rel="noopener noreferrer">
+        //                         { brewery.website_url }
+        //                 </a> : <span>&nbsp;</span>
+        //             }
+        //             <p className="card-text">Brewery Type: { brewery.brewery_type }</p>
+        //             <p className="card-text">{ address }</p>
+        //             <p className="card-text">{ brewery.phone }</p>                        
+        //             <button className="btn btn-primary btn-block" onClick={ this.props.info }>View More Info</button>                    
+        //         </div>
+        //     </div>
+        // );
     }
 }

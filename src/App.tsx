@@ -7,13 +7,16 @@ const App: React.FunctionComponent = () => {
   const city = getCurrentCity() || "Los Angeles";
 
   function getCurrentCity() : string {
-    return "Los Angeles";
+    //TODO: update this to get current city
+    return "Chambersburg";
   }
 
   return (
     <div className="App">
-      <div className="container">
+      <div className="container-fluid">
+        <div className="app-full">
           <BreweryContainer city={ city } />
+        </div>
       </div>
     </div>
   );

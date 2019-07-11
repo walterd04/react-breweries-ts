@@ -82,7 +82,13 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                                 </a>
                             </small>
                         </div>
-                    </div>                    
+                    </div> 
+                    <input type="text" 
+                        className="form-control" 
+                        placeholder="Enter City to Search" 
+                        value={ this.state.city } 
+                        onChange={ this.changeCity } />                        
+                    <button className="btn btn-primary btn-block" onClick={ this.handleSearchClick }>Search</button>                 
                     <hr className="my-4 hr"></hr>
                     { breweries.map((brewery) => { 
                         return (

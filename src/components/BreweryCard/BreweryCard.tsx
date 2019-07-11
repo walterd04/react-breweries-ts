@@ -39,10 +39,10 @@ export default class BreweryCard extends Component<IBreweryCardProps, IBreweryCa
 
         let address = `${ brewery.street } ${ brewery.city }, ${ brewery.state } ${ brewery.postal_code } ${ brewery.country }`;
 
-        let cardClass = this.props.active ? "card bg-success border-dark mb-2" : "card bg-transparent border-dark mb-2";
+        let cardClass = this.props.active ? "card bg-success border-dark mt-4 mb-3" : "card bg-transparent border-dark mt-4 mb-3";
 
         return (
-            <div className={ cardClass }>
+            <a className={ cardClass } onClick={ this.props.info }>
                 <div className="cardBody pl-1 pr-1">
                     <h6 className="card-title">{ brewery.name }</h6>
                     <p className="card-text">{ brewery.brewery_type }</p>
@@ -52,9 +52,8 @@ export default class BreweryCard extends Component<IBreweryCardProps, IBreweryCa
                             { brewery.website_url }
                         </a>
                     </small>
-                    <button className="btn btn-warning btn-block btn-sm" onClick={ this.props.info }>View More Info</button>
                 </div>
-            </div>
+            </a>
         );
 
         // return (            

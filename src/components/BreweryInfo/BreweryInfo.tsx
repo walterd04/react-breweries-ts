@@ -1,6 +1,6 @@
 import React, { SFC } from 'react';
 import GoogleMapReact from 'google-map-react';
-import MapMarker from '../MapMarker/MapMarker';
+// import MapMarker from '../MapMarker/MapMarker';
 import IBrewery from '../../interfaces/IBrewery';
 
 //TODO: separate these out into their own files
@@ -18,6 +18,14 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
 
     let defaultCenter = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
 
+    function renderMarkers(map: any, maps: any): any {
+        let marker = new maps.Marker({
+            position: defaultCenter, 
+            map, 
+            title: brewery.name
+        });
+    }
+
     return (
         <div className="card">
             <div className="card-body">
@@ -26,15 +34,10 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
             </div>
             <div className="card-img-bottom" style={{ height: '20rem', width: '100%' }}>
                 <GoogleMapReact
-                    // bootstrapURLKeys={{ key: '' }} insert google api key here
+                    bootstrapURLKeys={{ key: 'AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58' }}
                     defaultCenter={ defaultCenter }
-                    defaultZoom={11}>
-                        <MapMarker 
-                            // TODO: decide to use google maps markers or continue using my own
-                            lat={ latitude }
-                            lng={ longitude }
-                            name={ brewery.name }
-                        color="red" />
+                    defaultZoom={11}
+                    onGoogleApiLoaded={ ({map, maps }) => renderMarkers(map, maps)}>                        
                 </GoogleMapReact>
             </div>
         </div>

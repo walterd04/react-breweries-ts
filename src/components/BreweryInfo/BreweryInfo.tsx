@@ -7,14 +7,15 @@ import IBrewery from '../../interfaces/IBrewery';
 
 interface IBreweryInfoProps {
     brewery: IBrewery
-    address: string
 }
 
 const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
-    let { brewery, address } = props;
+    let { brewery } = props;
 
     const latitude = brewery.latitude,
           longitude = brewery.longitude;
+
+    const address = `${ brewery.street } ${ brewery.city }, ${ brewery.state } ${ brewery.postal_code } ${ brewery.country }`;
 
     let defaultCenter = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
 

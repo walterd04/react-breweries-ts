@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import IBrewery from '../../interfaces/IBrewery';
 import BreweryCard from '../BreweryCard/BreweryCard';
+import BreweryInfo from '../BreweryInfo/BreweryInfo';
 import './BreweryContainer.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -14,7 +15,8 @@ interface IBreweryContainerState {
     city: string,
     breweries: Array<IBrewery>, 
     hasError: boolean, 
-    isLoading: boolean
+    isLoading: boolean, 
+    activeBrewery?: IBrewery
 }
 
 export default class BreweryContainer extends Component<IBreweryContainerProps, IBreweryContainerState> {
@@ -59,8 +61,12 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
         this.setState({ city: event.target.value });
     }
 
+    setActiveBrewery = (brewery: IBrewery) => { 
+        this.setState({ activeBrewery: brewery });
+    }
+
     render() {
-        const { breweries } = this.state;
+        const { breweries, activeBrewery } = this.state;
 
         return (
             <div>
@@ -78,16 +84,37 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                 </div>                
                     { breweries.length > 0 ?
                         <div className="row mt-4">
-                            <div className="card-columns">
-                                { breweries.map((brewery, index) => {
-                                    return (
-                                        <BreweryCard key={ brewery.id } brewery={ brewery } />
-                                    );
-                                })}
-                            </div>
+                            { activeBrewery ?
+                                <div>
+                                    <BreweryInfo brewery={ activeBrewery }  />
+                                </div>
+                                :
+                                <div className="card-columns">
+                                    { breweries.map((brewery) => {
+                                        return (
+                                            <BreweryCard key={ brewery.id } brewery={ brewery } info={ () => this.setActiveBrewery(brewery) } />
+                                        )
+                                    })}
+                                </div>
+                            }                            
                         </div> : null
                     }
                 </div>
         );
     }
 }
+
+
+{/* <div className="card-columns">
+                                activeBrewery ? 
+                                    <div></div>
+                                    :
+                                { breweries.map((brewery, index) => {
+                                    return (
+                                        activeBrewery && brewery.id === activeBrewery.id ?
+                                        <div>{ brewery.name } active</div>
+                                        :
+                                        <BreweryCard key={ brewery.id } brewery={ brewery } info={ () => this.setActiveBrewery(brewery) }/>
+                                    );
+                                })}
+                            </div> */}

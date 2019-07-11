@@ -7,7 +7,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 //TODO: seperate these into their own files
 interface IBreweryCardProps { 
-    brewery: IBrewery
+    brewery: IBrewery, 
+    info: any
 }
 
 interface IBreweryCardState {
@@ -36,29 +37,25 @@ export default class BreweryCard extends Component<IBreweryCardProps, IBreweryCa
         let { brewery, showBreweryInfo } = this.state;
 
         let address = `${ brewery.street } ${ brewery.city }, ${ brewery.state } ${ brewery.postal_code } ${ brewery.country }`;
-        return (
-            showBreweryInfo ? 
-                <BreweryInfo brewery={ brewery }
-                             address={ address } />
-                :
-                <div className="card">
-                    <img className="card-img-top" src={ genericImage } alt="Generic Brewery" />
-                    <div className="card-body">
-                        <h5 className="card-title">{ brewery.name }</h5>
-                        { brewery.website_url ? 
-                            <a className="btn btn-link card-text" 
-                                href={ brewery.website_url } 
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                    { brewery.website_url }
-                            </a> : <span>&nbsp;</span>
-                        }
-                        <p className="card-text">Brewery Type: { brewery.brewery_type }</p>
-                        <p className="card-text">{ address }</p>
-                        <p className="card-text">{ brewery.phone }</p>                        
-                        <button className="btn btn-primary btn-block" onClick={ this.showBreweryInfo }>View More Info</button>                    
-                    </div>
+        return (            
+            <div className="card">
+                <img className="card-img-top" src={ genericImage } alt="Generic Brewery" />
+                <div className="card-body">
+                    <h5 className="card-title">{ brewery.name }</h5>
+                    { brewery.website_url ? 
+                        <a className="btn btn-link card-text" 
+                            href={ brewery.website_url } 
+                            target="_blank"
+                            rel="noopener noreferrer">
+                                { brewery.website_url }
+                        </a> : <span>&nbsp;</span>
+                    }
+                    <p className="card-text">Brewery Type: { brewery.brewery_type }</p>
+                    <p className="card-text">{ address }</p>
+                    <p className="card-text">{ brewery.phone }</p>                        
+                    <button className="btn btn-primary btn-block" onClick={ this.props.info }>View More Info</button>                    
                 </div>
+            </div>
         );
     }
 }

@@ -7,12 +7,11 @@ import IBrewery from '../../interfaces/IBrewery';
 
 interface IBreweryInfoProps {
     brewery: IBrewery
-    address: string, 
-    apiKey: string
+    address: string
 }
 
 const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
-    let { brewery, apiKey, address } = props;
+    let { brewery, address } = props;
 
     const latitude = brewery.latitude,
           longitude = brewery.longitude;
@@ -27,10 +26,11 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
             </div>
             <div className="card-img-bottom" style={{ height: '20rem', width: '100%' }}>
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: apiKey }}
+                    // bootstrapURLKeys={{ key: '' }} insert google api key here
                     defaultCenter={ defaultCenter }
                     defaultZoom={11}>
                         <MapMarker 
+                            // TODO: decide to use google maps markers or continue using my own
                             lat={ latitude }
                             lng={ longitude }
                             name={ brewery.name }

@@ -34,7 +34,8 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
             </div>
             <div className="card-img-bottom" style={{ height: '20rem', width: '100%' }}>
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58' }}
+                    bootstrapURLKeys={{ key: '' }}
+                    //google api key goes above
                     defaultCenter={ defaultCenter }
                     defaultZoom={11}
                     onGoogleApiLoaded={ ({map, maps }) => renderMarkers(map, maps)}>                        

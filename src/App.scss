@@ -29,6 +29,20 @@
   display: table; 
   table-layout: fixed;
   width: 100%;
+
+  aside {
+    display: table-cell; 
+    float: none; 
+    height: 100%; 
+    padding: 0; 
+    vertical-align: top;
+  }
+
+  .sm-side {
+    background: none repeat scroll 0 0 #e5e8ef;
+    border-radius: 0 0 4px 4px;
+    width: 25%;
+  }
 }
 
 @keyframes App-logo-spin {

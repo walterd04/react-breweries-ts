@@ -1,12 +1,9 @@
-$cardWidth: 18rem; 
-$cardHeight: 32rem;
 
-.card.brewery-card { 
-    width: $cardWidth; 
-    height: $cardHeight;
-}
+.list-group-item {
+    border-radius: 0 0 0 0;
 
-.card { 
-    cursor: pointer;
-    border-radius: 0;
+    .active-brewery {
+        background: none repeat scroll 0 0 #00a8b3;
+        color: #343a40;
+    }
 }

@@ -1,8 +1,55 @@
-.sidebar-data { 
-    margin-bottom: -9999px; 
-    padding-bottom: -9999px;
-    width: 25%;
-    overflow-y: scroll;
-    top: 0; 
-    bottom: 0;
+.mail-box {
+    border-collapse: collapse; 
+    border-spacing: 0; 
+    display: table; 
+    table-layout: fixed; 
+    width: 100%;
+
+    aside { 
+        display: table-cell; 
+        float: none; 
+        height: 100%;
+        padding: 0; 
+        vertical-align: top;
+    }
+
+    .sm-side {
+        background: none repeat scroll 0 0 #e5e8ef;
+        border-radius: 0 0 4px 4px;
+        width: 25%;
+
+        .user-head { 
+            background: none repeat scroll 0 0 #00a8b3; 
+            color: #fff; 
+            height: 150px; 
+            padding: 20px;
+
+            .user-name {
+                display: inline-block; 
+                margin: 0 0 0 10px;
+            }
+        }
+
+        .search-wrapper {
+            padding: 20px;
+            background: none repeat scroll 0 0 #343a40        
+        }
+
+        .city-search { 
+            margin-bottom: 15px;
+        }
+    }
+
+    .lg-side {
+        background: none repeat scroll 0 0 #fff; 
+        border-radius: 0 4px 4px 0; 
+        width: 75%;
+    }
+}
+
+ul.brewery-nav {
+    display: inline-block; 
+    margin: 0; 
+    padding: 0; 
+    width: 100%; 
 }

@@ -12,13 +12,9 @@ const App: React.FunctionComponent = () => {
   }
 
   return (
-    <div className="App">
-      <div className="container-fluid">
-        <div className="app-full">
-          <BreweryContainer city={ city } />
-        </div>
+      <div className="container-fluid" style={ {paddingLeft: '0' } }>
+        <BreweryContainer city={ city } />
       </div>
-    </div>
   );
 }
 

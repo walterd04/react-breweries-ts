@@ -3,11 +3,13 @@ import GoogleMapReact from 'google-map-react';
 // import MapMarker from '../MapMarker/MapMarker';
 import IBrewery from '../../interfaces/IBrewery';
 import './BreweryInfo.scss';
+import 'font-awesome/css/font-awesome.css';
 
 //TODO: separate these out into their own files
 
 interface IBreweryInfoProps {
-    brewery: IBrewery
+    brewery: IBrewery, 
+    goBack: any
 }
 
 const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
@@ -29,22 +31,43 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
     }
 
     return (
-        <div className="col-xs-10 col-xs-offset-1">
-            <div className="card">
-                <div className="card-body">
-                    <h5 className="card-title">{ brewery.name }</h5>
-                    <p className="card-text">{ address }</p>
-                </div>
-                <div className="card-img-bottom" style={{ height: '50em', width: '100%' }}>
+        <div>
+            <div className="row">
+                <button className="btn btn-secondary btn-back" onClick={ props.goBack }>
+                    <i className="fa fa-arrow-left"></i>&nbsp;Go Back
+                </button>
+            </div>
+            <div className="row">
+                <h3 className="display-3 text-light">{ brewery.name }</h3>
+                <h6 className="display-6 text-light">{ address }</h6>
+            </div>
+            <div className="row">
+                <div style={{ height: '40em', width: '100%' }}>
                     <GoogleMapReact 
                         bootstrapURLKeys={{ key: 'AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58' }}
                         //google api key goes above
                         defaultCenter={ defaultCenter }
-                        defaultZoom={ 11 }
+                        defaultZoom={ 17 }
                         onGoogleApiLoaded={ ({ map, maps }) => renderMarkers(map, maps) }></GoogleMapReact>
                 </div>
-            </div>            
+            </div>
         </div>
+        // <div className="col-xs-10 col-xs-offset-1">
+        //     <div className="card">
+        //         <div className="card-body">
+        //             <h5 className="card-title">{ brewery.name }</h5>
+        //             <p className="card-text">{ address }</p>
+        //         </div>
+        //         <div className="card-img-bottom" style={{ height: '50em', width: '100%' }}>
+        //             <GoogleMapReact 
+        //                 bootstrapURLKeys={{ key: 'AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58' }}
+        //                 //google api key goes above
+        //                 defaultCenter={ defaultCenter }
+        //                 defaultZoom={ 11 }
+        //                 onGoogleApiLoaded={ ({ map, maps }) => renderMarkers(map, maps) }></GoogleMapReact>
+        //         </div>
+        //     </div>            
+        // </div>
     );
 }
 

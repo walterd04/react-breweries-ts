@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IBrewery from '../../interfaces/IBrewery';
 import BreweryCard from '../BreweryCard/BreweryCard';
 import BreweryInfo from '../BreweryInfo/BreweryInfo';
+import Error from '../Error/Error';
 import 'bootstrap/dist/css/bootstrap.css';
 import './BreweryContainer.scss';
 
@@ -15,6 +16,7 @@ interface IBreweryContainerState {
     city: string,
     breweries: Array<IBrewery>, 
     hasError: boolean, 
+    errorMessage?: string,
     isLoading: boolean, 
     activeBrewery?: IBrewery
 }
@@ -53,7 +55,11 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                 });
             })
             .catch(error => {
-                this.setState({ hasError: true, isLoading: false });
+                this.setState({ 
+                    hasError: true, 
+                    isLoading: false, 
+                    errorMessage: "Error in getting breweries. Please check your city and try again."
+                });
             });
     }
 
@@ -62,7 +68,24 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
     }
 
     setActiveBrewery = (brewery: IBrewery) => { 
-        this.setState({ activeBrewery: brewery });
+        if(brewery.longitude && brewery.latitude){
+            this.setState({ 
+                activeBrewery: brewery,
+                hasError: false, 
+                errorMessage: ""
+            });
+        } else { 
+            this.setState({ 
+                hasError: true, 
+                errorMessage: "No longitude or latitude found, please contact OpenBreweryDB if this is a mistake."
+            });
+        }
+    }
+
+    removeActiveBrewery = () => { 
+        this.setState({
+            activeBrewery: undefined
+        });
     }
 
     render() {
@@ -85,66 +108,30 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                     </nav> 
                 </div>
                 <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            { breweries.map((brewery) => { 
-                                return ( 
-                                    <div className="list-group mb-4" key={ brewery.id }>
-                                        { activeBrewery && activeBrewery.id === brewery.id ?
-                                            <BreweryCard brewery={ brewery } info={ () => { this.setActiveBrewery(brewery) }} active={ true } />
-                                            :
-                                            <BreweryCard brewery={ brewery } info={ () => { this.setActiveBrewery(brewery) }} active={ false } /> 
-                                        }
-                                    </div>
-                                );
-                            })}
+                    { this.state.hasError ? 
+                        <div><Error message={ this.state.errorMessage } /></div> : null
+                    } 
+                    { activeBrewery && !this.state.hasError ? 
+                        <div>
+                            <BreweryInfo brewery={ activeBrewery } goBack={ () => { this.removeActiveBrewery() }} />
+                        </div> 
+                        : 
+                        <div>
+                            <div className="row">
+                                <div className="col">
+                                    { breweries.map((brewery) => { 
+                                        return ( 
+                                            <div className="list-group mb-4" key={ brewery.id }>
+                                                <BreweryCard brewery={ brewery } info={ () => { this.setActiveBrewery(brewery) }} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    }                   
                 </div>
             </div>
         );
-
-        // return (
-        //     <div className="mail-box">
-        //         <aside className="sm-side">
-        //             <div className="user-head">
-        //                 <div className="user-name">
-        //                     <h4>Andculture Coding Challenge</h4>
-        //                     <h6>OpenBreweryDB React Frontend</h6>
-        //                     <small className="text-muted">
-        //                         View source code on&nbsp;
-        //                         <a href="https://github.com/walterd04/react-breweries-ts" target="_blank" rel="noopener noreferrer">GitHub.</a>
-        //                     </small>
-        //                 </div>
-        //             </div>
-        //             <div className="search-wrapper">
-        //                 <input type="text" 
-        //                     className="form-control city-search" 
-        //                     placeholder="Enter City to Search" 
-        //                     value={ this.state.city } 
-        //                     onChange={ this.changeCity } />
-        //                 <button className="btn btn-primary btn-block" onClick={ this.handleSearchClick }>Search</button>
-        //             </div>
-        //             <ul className="brewery-nav">
-        //                 { breweries.map((brewery) => { 
-        //                     return (
-        //                         activeBrewery && activeBrewery.id === brewery.id ?
-        //                         <BreweryCard key={ brewery.id } brewery={ brewery } info={ () => { this.setActiveBrewery(brewery) }} active={ true } />
-        //                         :
-        //                         <BreweryCard key={ brewery.id } brewery={ brewery } info={ () => { this.setActiveBrewery(brewery) }} active={ false } />
-        //                     )
-        //                 })}
-        //             </ul>
-        //         </aside>
-        //         <div className="lg-side">
-        //             { activeBrewery ? 
-        //                 <div>
-        //                     <BreweryInfo brewery={ activeBrewery } key={ activeBrewery.id } />
-        //                 </div>
-        //                 : null 
-        //             }
-        //         </div>
-        //     </div>
-        // );
     }
 }

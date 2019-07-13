@@ -7,15 +7,25 @@ const App: React.FunctionComponent = () => {
   const city = getCurrentCity() || "Los Angeles";
 
   function getCurrentCity() : string {
-    //TODO: update this to get current city
-    return "Chambersburg";
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition((position) => {
+    //     var uri = "https://maps.googleapis.com/maps/api/geocode/json?latlng=39.908147199999995,-77.7109504&key=AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58&sensor=false%";
+    //     fetch(uri)
+    //       .then((response) => {
+    //         debugger;
+    //       }).catch((error) => {
+    //         debugger;
+    //       });
+    //   });
+    // }
+    return "Harrisburg";
   }
 
   return (
       // <div className="container-fluid" style={ {paddingLeft: '0' } }>
       //   <BreweryContainer city={ city } />
       // </div>
-      <div>
+      <div className="App">
         <BreweryContainer city={ city } />
       </div>
   );

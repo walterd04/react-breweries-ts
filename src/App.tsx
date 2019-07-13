@@ -12,7 +12,10 @@ const App: React.FunctionComponent = () => {
   }
 
   return (
-      <div className="container-fluid" style={ {paddingLeft: '0' } }>
+      // <div className="container-fluid" style={ {paddingLeft: '0' } }>
+      //   <BreweryContainer city={ city } />
+      // </div>
+      <div>
         <BreweryContainer city={ city } />
       </div>
   );

@@ -17,17 +17,28 @@ const BreweryCard: React.SFC<IBreweryCardProps> = (props) => {
     let cardClass = props.active ? "list-group-item bg-dark text-white w-100" : "list-group-item bg-transparent w-100";
 
     return (
-        <button className={ cardClass } onClick={ info }>
+        <button className="list-group-item list-group-item-action flex-column align-items-start " onClick={ info }>
+            <div className="d-flex w-100 justify-content-between">
+                <h5 className="mb-1">{ brewery.name }</h5>
+                <small>{ brewery.brewery_type }</small>
+            </div>
             <div>
-                <h6>{ brewery.name }</h6>
-                <p>{ brewery.brewery_type }</p>
-                <p>{ address }</p>
-                <small className="text-muted">
-                    <a href={ brewery.website_url } target="_blank" rel="noopener noreferrer">
-                        { brewery.website_url }
-                    </a>
+                <p className="mb-1">{ address }</p>
+            </div>
+            <div>
+                <p className="mb-1">{ brewery.phone }</p>
+            </div>
+            <div>
+                <small>
+                    { brewery.website_url ? 
+                        <a className="btn-link" href={ brewery.website_url } target="_blank" rel="noopener noreferrer">
+                            { brewery.website_url }
+                        </a>
+                        : 
+                        <span>&nbsp;</span>
+                    }
                 </small>
-            </div> 
+            </div>
         </button>
     );
 }

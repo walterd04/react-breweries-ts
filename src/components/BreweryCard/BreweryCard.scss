@@ -1,9 +1,15 @@
 
 .list-group-item {
-    border-radius: 0 0 0 0;
-
     .active-brewery {
         background: none repeat scroll 0 0 #00a8b3;
         color: #343a40;
+    }
+}
+
+.list-group-item.list-group-item-action {
+    border: 8px solid black;
+
+    &:hover {
+        background-color: pink;
     }
 }

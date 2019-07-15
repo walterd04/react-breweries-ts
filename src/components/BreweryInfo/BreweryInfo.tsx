@@ -39,6 +39,8 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
             </div>
             <div className="row">
                 <h3 className="display-3 text-light">{ brewery.name }</h3>
+            </div>
+            <div className="row">
                 <h6 className="display-6 text-light">{ address }</h6>
             </div>
             <div className="row">
@@ -52,22 +54,6 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
                 </div>
             </div>
         </div>
-        // <div className="col-xs-10 col-xs-offset-1">
-        //     <div className="card">
-        //         <div className="card-body">
-        //             <h5 className="card-title">{ brewery.name }</h5>
-        //             <p className="card-text">{ address }</p>
-        //         </div>
-        //         <div className="card-img-bottom" style={{ height: '50em', width: '100%' }}>
-        //             <GoogleMapReact 
-        //                 bootstrapURLKeys={{ key: 'AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58' }}
-        //                 //google api key goes above
-        //                 defaultCenter={ defaultCenter }
-        //                 defaultZoom={ 11 }
-        //                 onGoogleApiLoaded={ ({ map, maps }) => renderMarkers(map, maps) }></GoogleMapReact>
-        //         </div>
-        //     </div>            
-        // </div>
     );
 }
 

@@ -22,9 +22,6 @@ const App: React.FunctionComponent = () => {
   }
 
   return (
-      // <div className="container-fluid" style={ {paddingLeft: '0' } }>
-      //   <BreweryContainer city={ city } />
-      // </div>
       <div className="App">
         <BreweryContainer city={ city } />
       </div>

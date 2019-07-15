@@ -49,7 +49,7 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
                         bootstrapURLKeys={{ key: 'AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58' }}
                         //google api key goes above
                         defaultCenter={ defaultCenter }
-                        defaultZoom={ 17 }
+                        defaultZoom={ 19 }
                         onGoogleApiLoaded={ ({ map, maps }) => renderMarkers(map, maps) }></GoogleMapReact>
                 </div>
             </div>

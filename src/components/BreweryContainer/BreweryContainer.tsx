@@ -64,7 +64,10 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
     }
 
     changeCity = (event: any) => { 
-        this.setState({ city: event.target.value });
+        this.setState({ 
+            city: event.target.value, 
+            hasError: false
+        });
     }
 
     setActiveBrewery = (brewery: IBrewery) => { 
@@ -96,7 +99,7 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                 <div className="container-fluid mb-4">
                     {/* TODO: make this it's own component */}
                     <nav className="navbar navbar-dark bg-dark">
-                        <div className="navbar-brand">Andculture Coding Challenge</div>
+                        <div className="navbar-brand">OpenBreweryDB Coding Challenge</div>
                         <div className="form-inline">
                             <input type="text" 
                                 className="form-control city-search" 

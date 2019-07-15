@@ -91,6 +91,13 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
         });
     }
 
+    hideError = () => { 
+        this.setState({ 
+            hasError: false, 
+            errorMessage: undefined
+        });
+    }
+
     render() {
         const { breweries, activeBrewery } = this.state;
 
@@ -99,7 +106,7 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                 <div className="container-fluid mb-4">
                     {/* TODO: make this it's own component */}
                     <nav className="navbar navbar-dark bg-dark">
-                        <div className="navbar-brand">OpenBreweryDB Coding Challenge</div>
+                        <div className="navbar-brand">Andculture Coding Challenge</div>
                         <div className="form-inline">
                             <input type="text" 
                                 className="form-control city-search" 
@@ -111,9 +118,7 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                     </nav> 
                 </div>
                 <div className="container">
-                    { this.state.hasError ? 
-                        <div><Error message={ this.state.errorMessage } /></div> : null
-                    } 
+                    <Error message={ this.state.errorMessage } show={ this.state.hasError } hideModal={ () => { this.hideError() }} />
                     { activeBrewery && !this.state.hasError ? 
                         <div>
                             <BreweryInfo brewery={ activeBrewery } goBack={ () => { this.removeActiveBrewery() }} />

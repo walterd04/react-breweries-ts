@@ -1,15 +1,14 @@
-
-.list-group-item {
-    .active-brewery {
-        background: none repeat scroll 0 0 #00a8b3;
-        color: #343a40;
-    }
-}
+@import "../../utilities/variables";
 
 .list-group-item.list-group-item-action.list-group-item-secondary {
-    border: 8px solid black;
+    border: 3px solid #9DBBAE;
 
     &:hover {
-        background-color: pink;
+        background-color: $hoverColor;
+        color: $textColor;
+
+        a {
+            color: white;
+        }
     }
 }

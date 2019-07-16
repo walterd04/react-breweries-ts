@@ -1,4 +1,6 @@
-.card {
-    margin-top: 30px;
-    margin-left: 100px;
+@import "../../utilities/variables";
+
+.btn-back { 
+    background-color: $buttonColorLight;
+    color: dark-gray;
 }

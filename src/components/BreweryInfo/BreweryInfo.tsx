@@ -2,6 +2,7 @@ import React, { SFC } from 'react';
 import GoogleMapReact from 'google-map-react';
 // import MapMarker from '../MapMarker/MapMarker';
 import IBrewery from '../../interfaces/IBrewery';
+import 'bootstrap/dist/css/bootstrap.css';
 import './BreweryInfo.scss';
 import 'font-awesome/css/font-awesome.css';
 
@@ -33,7 +34,7 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
     return (
         <div>
             <div className="row">
-                <button className="btn btn-secondary btn-back" onClick={ props.goBack }>
+                <button className="btn btn-back" onClick={ props.goBack }>
                     <i className="fa fa-arrow-left"></i>&nbsp;Go Back
                 </button>
             </div>

@@ -23,28 +23,6 @@
   color: #61dafb;
 }
 
-.app-full { 
-  border-collapse: collapse; 
-  border-spacing: 0; 
-  display: table; 
-  table-layout: fixed;
-  width: 100%;
-
-  aside {
-    display: table-cell; 
-    float: none; 
-    height: 100%; 
-    padding: 0; 
-    vertical-align: top;
-  }
-
-  .sm-side {
-    background: none repeat scroll 0 0 #e5e8ef;
-    border-radius: 0 0 4px 4px;
-    width: 25%;
-  }
-}
-
 .container-fluid {
   padding-right: 0; 
   padding-left: 0;

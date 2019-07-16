@@ -105,7 +105,7 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
             <div>
                 <div className="container-fluid mb-4">
                     {/* TODO: make this it's own component */}
-                    <nav className="navbar navbar-dark bg-dark">
+                    <nav className="navbar navbar-dark">
                         <div className="navbar-brand">Andculture Coding Challenge</div>
                         <div className="form-inline">
                             <input type="text" 
@@ -113,7 +113,7 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                                 placeholder="Enter City to Search" 
                                 value={ this.state.city } 
                                 onChange={ this.changeCity } />
-                            <button className="btn btn-primary ml-1" onClick={ this.handleSearchClick }>Search</button>
+                            <button className="btn ml-2 btn-search" onClick={ this.handleSearchClick }>Search</button>
                         </div>
                     </nav> 
                 </div>
@@ -127,13 +127,19 @@ export default class BreweryContainer extends Component<IBreweryContainerProps, 
                         <div>
                             <div className="row">
                                 <div className="col">
-                                    { breweries.map((brewery) => { 
-                                        return ( 
-                                            <div className="list-group mb-4" key={ brewery.id }>
-                                                <BreweryCard brewery={ brewery } info={ () => { this.setActiveBrewery(brewery) }} />
-                                            </div>
-                                        );
-                                    })}
+                                    { breweries.length > 0 ? 
+
+                                        breweries.map((brewery) => { 
+                                            return ( 
+                                                <div className="list-group mb-4" key={ brewery.id }>
+                                                    <BreweryCard brewery={ brewery } info={ () => { this.setActiveBrewery(brewery) }} />
+                                                </div>
+                                            );
+                                        }) 
+                                        : 
+                                        // TODO: make these non arbitrary non hard-coded values
+                                        <Error message="No breweries found for selected city" show={true} hideModal={ () => { this.hideError() }} />
+                                    }
                                 </div>
                             </div>
                         </div>

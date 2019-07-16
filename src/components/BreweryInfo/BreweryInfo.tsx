@@ -29,6 +29,8 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
             map, 
             title: brewery.name
         });
+
+        return marker;
     }
 
     return (
@@ -47,7 +49,7 @@ const BreweryInfo: SFC<IBreweryInfoProps> = (props) => {
             <div className="row">
                 <div style={{ height: '40em', width: '100%' }}>
                     <GoogleMapReact 
-                        bootstrapURLKeys={{ key: 'AIzaSyBCn7UYYYzHCnv_qZ7sHY89gBbKjktRb58' }}
+                        bootstrapURLKeys={{ key: '' }} // insert google api key here
                         //google api key goes above
                         defaultCenter={ defaultCenter }
                         defaultZoom={ 15 }

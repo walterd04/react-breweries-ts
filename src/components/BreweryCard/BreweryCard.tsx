@@ -1,6 +1,5 @@
-import React, { Component } from 'react'; 
+import React from 'react'; 
 import IBrewery from '../../interfaces/IBrewery';
-import BreweryInfo from '../BreweryInfo/BreweryInfo';
 import './BreweryCard.scss'; 
 import 'bootstrap/dist/css/bootstrap.css';
 

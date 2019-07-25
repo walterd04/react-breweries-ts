@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { useState } from 'react'; 
 import IBrewery from '../../interfaces/IBrewery';
 import './BreweryCard.scss'; 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -13,9 +13,11 @@ function formatPhoneNumber(phone: string): string {
     return phone ? `(${phone.substring(0, 3)}) ${phone.substring(3, 6)}-${phone.substring(6)}` : "";
 }
 
-const BreweryCard: React.SFC<IBreweryCardProps> = (props) => {
-    let { brewery, info } = props;
-    let address = `${ brewery.street } ${ brewery.city }, ${ brewery.state } ${ brewery.postal_code } ${ brewery.country }`;    
+const BreweryCard: React.FC<IBreweryCardProps> = (initialState) => {
+    const [state] = React.useState<IBreweryCardProps>(initialState);
+
+    let { brewery, info } = state;
+    let address = `${ brewery.street } ${ brewery.city }, ${ brewery.state } ${ brewery.postal_code } ${ brewery.country} `;
 
     return (
         <button className="list-group-item list-group-item-action list-group-item-secondary flex-column align-items-start " onClick={ info }>
